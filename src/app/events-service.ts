@@ -5,7 +5,7 @@ import { Router } from '@angular/router';//router provides tool to the service s
 import { environment } from '../environments/environment';
 
 
-const BACKEND_URL = environment.apiURL + '/event';
+const BACKEND_URL = environment.apiURL + '/newEvents';
 
 @Injectable({
   providedIn: 'root'
@@ -19,20 +19,26 @@ export class EventsService {
 
 
   addEvent(eventType: string, eventDate: any, eventName: string, eventComment: string) {
-    const eventData = new FormData();
+    /*const eventData = new FormData();
     eventData.append("eventType", eventType)
     eventData.append("eventDate", eventDate)
     eventData.append("eventName", eventName)
-    eventData.append("eventComment", eventComment)
+    eventData.append("eventComment", eventComment)*/
+    const eventData = {
+      eventType: eventType,
+      eventDate: eventDate,
+      evetName: eventName,
+      eventComment: eventComment
+    }
 
-    eventData.forEach(record=>{
-      console.log(record);
-    });
+    // eventData.forEach(record=>{
+    //   console.log(record);
+    // });
 
-    // this.http.post<{message: string, event: Event}>(BACKEND_URL, eventData)
-    //   .subscribe((responseData)=>{
-    //     console.log(responseData);
-    // })
+    this.http.post<{message: string, event: Event}>(BACKEND_URL, eventData)
+      .subscribe((responseData)=>{
+        console.log(responseData);
+    })
   }
 
 }

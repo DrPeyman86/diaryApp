@@ -19,26 +19,26 @@ export class EventsService {
 
 
   addEvent(eventType: string, eventDate: any, eventName: string, eventComment: string) {
-    /*const eventData = new FormData();
+    const eventData = new FormData();
     eventData.append("eventType", eventType)
     eventData.append("eventDate", eventDate)
     eventData.append("eventName", eventName)
-    eventData.append("eventComment", eventComment)*/
-    const eventData = {
-      eventType: eventType,
-      eventDate: eventDate,
-      evetName: eventName,
-      eventComment: eventComment
-    }
+    eventData.append("eventComment", eventComment)
+    // const eventData = {
+    //   eventType: eventType,
+    //   eventDate: eventDate,
+    //   eventName: eventName,
+    //   eventComment: eventComment
+    // }
 
     // eventData.forEach(record=>{
     //   console.log(record);
     // });
 
-    this.http.post<{message: string, event: Event}>(BACKEND_URL, eventData)
-      .subscribe((responseData)=>{
-        console.log(responseData);
-    })
+    return this.http.post<{message: string, event: Event}>(BACKEND_URL, eventData)
+    //   .subscribe((responseData)=>{
+    //     console.log(responseData);
+    // })
   }
 
 }

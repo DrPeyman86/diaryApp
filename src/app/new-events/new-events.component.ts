@@ -44,6 +44,11 @@ export class NewEventsComponent implements OnInit {
     console.log(this.form);
 
     this.eventsService.addEvent(this.form.value.eventType, this.form.value.eventDate, this.form.value.eventName, this.form.value.eventComments)
+    .subscribe((response)=>{
+      console.log(response);
+      this.form.reset();
+      this.isLoading = false;
+    })
 
     //console.dir(this.form);
 

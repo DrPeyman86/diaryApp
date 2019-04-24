@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 //required for reactive Forms control
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { EventsService } from '../events-service';
 
-declare function newEventComponent(): any;
+//declare function newEventComponent(): any;
 
 @Component({
   selector: 'app-new-events',
@@ -17,24 +17,29 @@ export class NewEventsComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private eventsService: EventsService) { }
+  constructor(private eventsService: EventsService, fb: FormBuilder) {
+    this.form = fb.group({
+      hideRequired: false,
+      floatLabel: 'auto'
+    });
+   }
 
   ngOnInit() {
-    newEventComponent();
-    this.form = new FormGroup({
-      'eventType': new FormControl("", {
-        validators: [Validators.required]
-      }),
-      'eventDate': new FormControl(null, {
-        validators: [Validators.required]
-      }),
-      'eventName': new FormControl(null,{
-        validators: [Validators.required, Validators.minLength(3)]
-      }),
-      'eventComments': new FormControl(null, {
-        validators: [Validators.required, Validators.minLength(10)]
-      })
-    })
+    // newEventComponent();
+    // this.form = new FormGroup({
+    //   'eventType': new FormControl("", {
+    //     validators: [Validators.required]
+    //   }),
+    //   'eventDate': new FormControl(null, {
+    //     validators: [Validators.required]
+    //   }),
+    //   'eventName': new FormControl(null,{
+    //     validators: [Validators.required, Validators.minLength(3)]
+    //   }),
+    //   'eventComments': new FormControl(null, {
+    //     validators: [Validators.required, Validators.minLength(10)]
+    //   })
+    // })
 
   }
 

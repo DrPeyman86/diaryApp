@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="progress" *ngIf="isLoading">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
   </div>
@@ -43,4 +43,44 @@
 
     </form>
 
-</div>>
+</div>> -->
+<mat-card>
+      <div class="example-container">
+        <form class="example-container" [formGroup]="form">
+          <!-- <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
+          <div>
+            <label>Float label: </label>
+            <mat-radio-group formControlName="floatLabel">
+              <mat-radio-button value="auto">Auto</mat-radio-button>
+              <mat-radio-button value="always">Always</mat-radio-button>
+              <mat-radio-button value="never">Never</mat-radio-button>
+            </mat-radio-group>
+          </div> -->
+
+          <mat-form-field
+              [hideRequiredMarker]="form.value.hideRequired"
+              [floatLabel]="form.value.floatLabel">
+            <mat-select required>
+              <mat-option>-- None --</mat-option>
+              <mat-option *ngFor="let eventType of eventTypes" value="{{eventType}}">{{eventType}}</mat-option>
+            </mat-select>
+            <mat-label><mat-icon>favorite</mat-icon> <b> Type of Diary</b> </mat-label>
+          </mat-form-field>
+
+          <mat-form-field
+              [hideRequiredMarker]="form.value.hideRequired"
+              [floatLabel]="form.value.floatLabel">
+            <input matInput placeholder="Name of Event" required>
+          </mat-form-field>
+
+          <mat-form-field [floatLabel]="form.value.floatLabel">
+            <mat-label>Place to share thoughts</mat-label>
+            <textarea matInput placeholder="Share Memory"></textarea>
+          </mat-form-field>
+
+
+        </form>
+      </div>
+
+</mat-card>
+

@@ -1,4 +1,4 @@
-<script type="application/javascript">
+<!-- <script type="application/javascript">
     $('.dropdown-toggle').dropdown()
     alert('here');
 </script>
@@ -8,10 +8,10 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 
-        <!-- <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button> -->
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -21,7 +21,7 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/pastEvents">Past Events</a>
             </li>
-            <!-- <li class="nav-item dropdown">
+             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
               </a>
@@ -34,7 +34,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
-            </li> -->
+            </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -43,7 +43,7 @@
 
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Account<!--placeholder have name of user logged in or Account if not-->
+              Accountplaceholder have name of user logged in or Account if not
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" routerLink="/login">Login</a>
@@ -54,4 +54,31 @@
         </div>
       </nav>
 </div>
+ -->
 
+ <mat-toolbar color="primary">
+  <!-- <span><a mat-button routerLink="/">My Messages</a></span> -->
+  <!-- <span class="spacer"></span> -->
+  <ul>
+    <li *ngIf="userIsAuthenticated">
+      <!--routerLink attribute is actually an angular Directive used by angular router to turn this into a normal link when clicks are captured by angular router so that it will
+      stop the default behaviof of sending a hTTP request and then just rerender the page for the page we are trying to visit -->
+      <!--routerLinkActive is also another angular directive, which senses which <a> is active on the page. and if it is active, it will assign the "mat-accent" type of element to that element-->
+      <a mat-button routerLink="" routerLinkActive="mat-accent">New Events</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/pastEvents" routerLinkActive="mat-accent">Past Events</a>
+    </li>
+
+  </ul>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign up</a>
+    </li>
+    <!--V3 V3 V3 - additions when adding functionality when we added token to the app. so want to logout now-->
+    <li *ngIf="userIsAuthenticated">
+      <button mat-button (click)="onLogout()">Logout</button>
+    </li>
+  </ul>
+</mat-toolbar>

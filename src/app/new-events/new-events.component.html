@@ -19,7 +19,7 @@
             <label>Date:</label>
             <div class='input-group date'>
               <input type='text' class="form-control"  id='datetimepicker1' formControlName="eventDate" />
-              {{form.get('eventDate').value}}test
+              <!-- {{form.get('eventDate').value}}test -->
               <div class="invalid-fb" *ngIf="form.get('eventDate').touched && form.get('eventDate').value === ''">Please select Event Date</div>
             </div>
           </div>

@@ -14,6 +14,8 @@ declare function newEventComponent(): any;
 export class NewEventsComponent implements OnInit {
   eventTypes = ['Good','Argument','Thought','Event'];
   isLoading = false;
+  now = new Date();
+  today = new Date(this.now.getFullYear(), this.now.getMonth(), this.now.getDate());
 
   form: FormGroup;
 
@@ -25,7 +27,7 @@ export class NewEventsComponent implements OnInit {
       'eventType': new FormControl("", {
         validators: [Validators.required]
       }),
-      'eventDate': new FormControl(null, {
+      'eventDate': new FormControl(this.today, {
         validators: [Validators.required]
       }),
       'eventName': new FormControl(null,{

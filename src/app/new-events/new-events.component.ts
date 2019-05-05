@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 //required for reactive Forms control
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { EventsService } from '../events-service';
 
 //declare function newEventComponent(): any;
@@ -19,15 +19,10 @@ export class NewEventsComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private eventsService: EventsService, fb: FormBuilder) {
-    this.form = fb.group({
-      hideRequired: false,
-      floatLabel: 'auto'
-    });
-   }
+  constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
-    newEventComponent();
+    //newEventComponent();
     this.form = new FormGroup({
       'eventType': new FormControl("", {
         validators: [Validators.required]
@@ -47,6 +42,9 @@ export class NewEventsComponent implements OnInit {
 
   onSaveEvent() {
     this.isLoading = true;
+    if(this.form.invalid) {
+      return false;
+    }
 
     console.log(this.form);
 

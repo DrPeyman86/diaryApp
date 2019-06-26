@@ -13,7 +13,7 @@ mongoose.connect("mongodb+srv://peyman:"+ process.env.MONGO_ATLAS_PW +"@cluster1
   console.log('connected to database')
 })
 .catch(()=>{
-  console.log('Connection Failed');
+  console.log('Connection Failed'); 
 })
 
 app.use(bodyParser.json());

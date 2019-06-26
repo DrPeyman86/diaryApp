@@ -19,15 +19,15 @@
             <label>Date:</label>
             <div class='input-group date'>
               <input type='text' class="form-control"  id='datetimepicker1' formControlName="eventDate" />
-              {{form.get('eventDate').value}}test
+              <!-- {{form.get('eventDate').value}}test
               <div class="invalid-fb" *ngIf="form.get('eventDate').touched && form.get('eventDate').value === ''">Please select Event Date</div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
-      <div class="form-group">
+     <!-- <div class="form-group">
         <label for="exampleFormControlInput1">Name:</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name" formControlName="eventName">
         <div class="invalid-fb" *ngIf="form.touched && form.get('eventName').invalid">Please select Event Name</div>
@@ -46,6 +46,7 @@
 </div>> -->
 <mat-card>
       <!-- <div class="example-container"> -->
+
         <form class="example-container" [formGroup]="form" (submit)="onSaveEvent()">
           <!-- <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
           <div>
@@ -63,6 +64,7 @@
             <mat-select
               formControlName="eventType"
               required>
+
               <mat-option *ngFor="let eventType of eventTypes" value="{{eventType}}">{{eventType}}</mat-option>
             </mat-select>
             <mat-label><mat-icon>favorite</mat-icon> <b> Type of Diary</b> </mat-label>
@@ -85,6 +87,7 @@
               placeholder="Choose a date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+
           </mat-form-field>
 
           <mat-form-field [floatLabel]="form.value.floatLabel">
@@ -111,6 +114,7 @@
             color="accent"
             type="submit">Save Diary
           </button>
+
 
 
         </form>

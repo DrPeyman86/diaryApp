@@ -20,22 +20,20 @@ export class NewEventsComponent implements OnInit {
   isLoading = false;
   imagePreview: string;
 
+
   form: FormGroup;
 
-  constructor(private eventsService: EventsService, fb: FormBuilder) {
-    this.form = fb.group({
-      hideRequired: false,
-      floatLabel: 'auto'
-    });
-   }
+  constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
     // newEventComponent();
+
     this.form = new FormGroup({
       'eventType': new FormControl("", {
         validators: [Validators.required]
       }),
       'eventDate': new FormControl(null, {
+
         validators: [Validators.required]
       }),
       'eventName': new FormControl(null,{
@@ -48,6 +46,7 @@ export class NewEventsComponent implements OnInit {
     })
 
   }
+
 
   onImagePicked(event: Event) {
     //not having the (as HTMLInputElement) will not work since event.target.files does not know that the target field is an input field.
@@ -81,6 +80,9 @@ export class NewEventsComponent implements OnInit {
       return false;
     }
     this.isLoading = true;
+    if(this.form.invalid) {
+      return false;
+    }
 
     //console.log(this.form);
 

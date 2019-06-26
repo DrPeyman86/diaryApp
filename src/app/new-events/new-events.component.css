@@ -51,4 +51,12 @@ input[type="file"] {
 
 .image-preview img {
   height: 100%;
+
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
 }

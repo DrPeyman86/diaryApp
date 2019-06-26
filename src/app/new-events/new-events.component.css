@@ -1,4 +1,4 @@
-.invalid-fb {
+/* .invalid-fb {
   width: 100%;
   margin-top: .25rem;
   font-size: 80%;
@@ -24,4 +24,31 @@
 
 .example-container .mat-radio-button {
   margin: 0 12px;
+} */
+
+mat-card {
+  width: 80%;
+  margin: 1rem auto;
+}
+
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
 }

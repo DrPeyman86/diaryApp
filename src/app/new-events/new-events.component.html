@@ -45,8 +45,8 @@
 
 </div>> -->
 <mat-card>
-      <div class="example-container">
-        <form class="example-container" [formGroup]="form">
+      <!-- <div class="example-container"> -->
+        <form class="example-container" [formGroup]="form" (submit)="onSaveEvent()">
           <!-- <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
           <div>
             <label>Float label: </label>
@@ -60,8 +60,9 @@
           <mat-form-field
               [hideRequiredMarker]="form.value.hideRequired"
               [floatLabel]="form.value.floatLabel">
-            <mat-select required>
-              <mat-option>-- None --</mat-option>
+            <mat-select
+              formControlName="eventType"
+              required>
               <mat-option *ngFor="let eventType of eventTypes" value="{{eventType}}">{{eventType}}</mat-option>
             </mat-select>
             <mat-label><mat-icon>favorite</mat-icon> <b> Type of Diary</b> </mat-label>
@@ -70,17 +71,50 @@
           <mat-form-field
               [hideRequiredMarker]="form.value.hideRequired"
               [floatLabel]="form.value.floatLabel">
-            <input matInput placeholder="Name of Event" required>
+            <input
+              formControlName="eventName"
+              matInput
+              placeholder="Name of Event" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              formControlName="eventDate"
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field [floatLabel]="form.value.floatLabel">
             <mat-label>Place to share thoughts</mat-label>
-            <textarea matInput placeholder="Share Memory"></textarea>
+            <textarea
+              formControlName="eventComments"
+              matInput
+              placeholder="Share Memory"
+              rows="4"></textarea>
           </mat-form-field>
+
+          <div>
+              <button mat-stroked-button type="button" (click)="FilePicker.click()">Pick Image</button>
+              <!--do not want the ugly default visual display of the input file type field.
+              instead we hide the field by CSS, but when the button above is clicked, we trigger the localreference on the input field-->
+              <input type="file" #FilePicker (change)="onImagePicked($event)">
+          </div>
+          <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+            <img [src]="imagePreview" [alt]="form.value.eventName">
+          </div>
+          <hr>
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit">Save Diary
+          </button>
 
 
         </form>
-      </div>
+      <!-- </div> -->
 
 </mat-card>
 

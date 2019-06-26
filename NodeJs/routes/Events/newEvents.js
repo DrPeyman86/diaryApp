@@ -1,16 +1,19 @@
 const express = require('express');
 const Events = require('../../models/events')
+const uploadFile = require('../../middleware/fileUploadImg');
 
 const router = express.Router();//call the router constructor
 
-router.post("", (req,res,next)=>{
-  console.log('body: ', req.body);
+router.post("", uploadFile, (req,res,next)=>{
+  //console.log('body: ', req);
 
+  const url = req.protocol + '://' + req.get("host");
   const event = new Events({
     type: req.body.eventType,
     date: req.body.eventDate,
     name: req.body.eventName,
-    comments: req.body.eventComment
+    comments: req.body.eventComment,
+    imagePath: (typeof req.file != 'undefined')?url + "/images/" + req.file.filename:null
   })
   //console.log(event);
   event.save().then((createdEvent)=>{
